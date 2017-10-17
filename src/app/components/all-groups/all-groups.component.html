@@ -1,0 +1,45 @@
+<div style="display: flex;
+  flex-flow: column; height: 100%;  background-color: aliceblue;">
+  
+  <mat-toolbar color="primary">
+    <span>Pesho org</span>
+    <span style="flex: 1 1 auto;"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu"> 
+      <mat-icon class="example-icon">add</mat-icon> 
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>people</mat-icon>
+        <span>Join Group</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>assignment</mat-icon>
+        <span>Add Problem</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>group_work</mat-icon>
+        <span>Add Assignment</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+  
+  <div style="padding: 20px;">
+    <h1 class="mat-headline"> Groups </h1>
+    <div style="display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    grid-gap: 15px;">
+      <mat-card style=" display: flex; padding-top: 10px; padding-bottom: 10px; align-items: center; ">
+        <mat-card-title style="margin: auto;"> ПЧМГ 2018</mat-card-title>
+      </mat-card> 
+
+      <mat-card style=" display: flex;  align-items: center; ">
+        <mat-card-title style="margin: auto;"> СМГ 5А</mat-card-title>
+      </mat-card>
+
+      <mat-card style=" display: flex;  align-items: center; ">
+        <mat-card-title style="margin: auto;"> Public group</mat-card-title>
+      </mat-card>
+
+     </div>
+   </div>
+</div>

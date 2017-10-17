@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCheckboxModule, MatCardModule,
         MatToolbarModule, MatSidenavModule, MatListModule,
         MatIconModule, MatProgressSpinnerModule, MatTableModule,
-        MatSelectModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+        MatSelectModule, MatFormFieldModule, MatInputModule,
+        MatGridListModule, MatMenuModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -16,10 +17,12 @@ import { SubmissionsComponent } from './components/submissions/submissions.compo
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ContestPageComponent } from './components/contest-page/contest-page.component';
 import { SubmissionDetailsComponent } from './components/submission-details/submission-details.component';
+import { AllGroupsComponent } from './components/all-groups/all-groups.component';
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent},
+  {path: 'home', component: AllGroupsComponent},
   {
     path: 'contest', 
     component: ContestPageComponent,
@@ -45,7 +48,8 @@ const AppRoutes: Routes = [
     SubmissionsComponent,
     LoginPageComponent,
     ContestPageComponent,
-    SubmissionDetailsComponent
+    SubmissionDetailsComponent,
+    AllGroupsComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,8 @@ const AppRoutes: Routes = [
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
+    MatGridListModule,
+    MatMenuModule,
     RouterModule.forRoot(AppRoutes, { enableTracing: true } )
   ],
   providers: [],
