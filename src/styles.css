@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and als files */
+
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';  
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+app-root {
+  height: 100%;
+}
+
+mat-sidenav {
+  box-shadow: 5px 0px 5px rgba(136, 136, 136, 0.52);
+  padding-right: 20px;
+}

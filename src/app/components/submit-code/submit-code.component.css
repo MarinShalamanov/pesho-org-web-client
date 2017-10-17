@@ -1,0 +1,15 @@
+.submit-code-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-btn {
+      width: fit-content;
+      margin-top: 5px;
+}
+
+.code-input {
+  width: 100%;
+  font-family: monospace;
+}
+  

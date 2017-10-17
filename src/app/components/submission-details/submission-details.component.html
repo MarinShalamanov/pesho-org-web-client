@@ -1,0 +1,140 @@
+
+<mat-card>
+  <div class="submission-info-section">
+    <div class="info-item">
+      <span class="info-label">Id</span>
+      <span>{{id}}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Time</span>
+      <span>{{time}}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">User</span>
+      <span>{{user}}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Problem</span>
+      <span>{{problem}}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Langauge</span>
+      <span>{{language}}</span>
+    </div>  
+    <div class="info-item">
+      <span class="info-label">Verdict</span>
+      <span>{{verdict}}</span>
+    </div>
+  </div>
+</mat-card>
+
+<mat-card class="card-tests">
+    <mat-table #table [dataSource]="testsDataSource">
+    <ng-container matColumnDef="step">
+      <mat-header-cell *matHeaderCellDef> Step </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.step}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        <div *ngIf="element.status == 'OK'; else elseBlock">
+          <mat-icon style="color: green; margin-right: 5px;">done</mat-icon>{{element.status}}
+        </div>
+        <ng-template #elseBlock>
+          <mat-icon style="color: red; margin-right: 5px;">error</mat-icon>{{element.status}}
+        </ng-template>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="reason">
+      <mat-header-cell *matHeaderCellDef> Reason </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.reason}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="time">
+      <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="input">
+      <mat-header-cell *matHeaderCellDef> Input </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.input}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="output">
+      <mat-header-cell *matHeaderCellDef> Output </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.output}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+  </mat-table>
+</mat-card>
+
+<mat-card class="card-code">
+<pre>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class Kolejka  
+
+	public static void solve(InputReader in, PrintWriter out)  
+		int a1 = in.nextInt(), b1 = in.nextInt(), c1 = in.nextInt(), a2 = in.nextInt(), b2 = in.nextInt(),
+				c2 = in.nextInt();
+		int x1 = in.nextInt(), y1 = in.nextInt(), z1 = in.nextInt(), x2 = in.nextInt(), y2 = in.nextInt(),
+				z2 = in.nextInt();
+		int s1 = a1 * 60 * 60 + b1 * 60 + c1;
+		int e1 = a2 * 60 * 60 + b2 * 60 + c2;
+		int s2 = x1 * 60 * 60 + y1 * 60 + z1;
+		int e2 = x2 * 60 * 60 + y2 * 60 + z2;
+			out.println();
+			return;
+		
+		int diff = e - s;
+		int h = diff / 3600;
+		int m = (diff % 3600) / 60;
+		int sec = (diff % 3600) % 60;
+		out.println(h + " " + m + " " + sec);
+	
+
+	public static void main(String[] args)  
+		InputStream inputStream = System.in;
+		OutputStream outputStream = System.out;
+		InputReader in = new InputReader(inputStream);
+		PrintWriter out = new PrintWriter(outputStream);
+		solve(in, out);
+		out.close();
+	
+
+	static class InputReader  
+		public BufferedReader reader;
+		public StringTokenizer tokenizer;
+
+		public InputReader(InputStream stream)  
+			reader = new BufferedReader(new InputStreamReader(stream), 32768);
+			tokenizer = null;
+		
+
+		public String next()  
+			while (tokenizer == null || !tokenizer.hasMoreTokens())  
+				try  
+					tokenizer = new StringTokenizer(reader.readLine());
+				 catch (IOException e)  
+					throw new RuntimeException(e);
+				
+			
+			return tokenizer.nextToken();
+		
+
+		public int nextInt()  
+			return Integer.parseInt(next());
+		
+
+		public long nextLong()  
+			return Long.parseLong(next());
+		
+
+		public double nextDouble()  
+			return Double.parseDouble(next()); 
+</pre>
+</mat-card>
