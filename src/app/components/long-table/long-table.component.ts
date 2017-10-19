@@ -3,6 +3,7 @@
 // Example usage:
 // <app-long-table 
 //    paginate="true"
+//    enableFilter="true"
 //    [data]="data" 
 //    (onRowClicked)="onRowClicked($event)">
 // </app-long-table>
@@ -16,11 +17,14 @@ import { Component, OnInit, Input,
   styleUrls: ['./long-table.component.css']
 })
 export class LongTableComponent implements OnInit {
+  @Input() title: string = "";
   @Input() data;
+  @Input() enableFilter: boolean = false;
   @Input() paginate: boolean = false;
+  @Input() pageSize: number = 50;
   @Output() onRowClicked: EventEmitter<any> = new EventEmitter();
   
-  pageSize: number = 50;
+  
   filter:boolean = true;
   filterWords:string[] = [];
   filterInput:string;

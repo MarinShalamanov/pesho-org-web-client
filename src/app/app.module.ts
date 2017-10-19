@@ -28,6 +28,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LongTableComponent } from './components/long-table/long-table.component';
 import { GroupsListComponent } from './components/groups-list/groups-list.component';
 import { SubmissionQueueComponent } from './components/submission-queue/submission-queue.component';
+import { GroupsDetailsComponent } from './components/groups-details/groups-details.component';
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
@@ -54,6 +55,7 @@ const AppRoutes: Routes = [
       {path: 'problems', component: ProblemsListComponent}, 
       {path: 'problem/:id', component: ProblemComponent},
       {path: 'groups', component: GroupsListComponent},
+      {path: 'group/:id', component: GroupsDetailsComponent},
       {path: 'assignments', component: ProblemsListComponent},
       {path: 'queue', component: SubmissionQueueComponent},
       {path: 'users', component: ProblemsListComponent},
@@ -83,7 +85,8 @@ const AppRoutes: Routes = [
     DashboardComponent,
     LongTableComponent,
     GroupsListComponent,
-    SubmissionQueueComponent
+    SubmissionQueueComponent,
+    GroupsDetailsComponent
   ],
   imports: [
     BrowserModule,

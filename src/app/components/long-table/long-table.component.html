@@ -1,6 +1,10 @@
-<mat-form-field floatPlaceholder="never">
-  <input matInput placeholder="Filter" [(ngModel)]="filterInput" (ngModelChange)="onFilterChanged($event)" >
-</mat-form-field>
+<div class="fullwidth table-title-div" >
+  <h2 class="mat-title table-title">{{title}}</h2>
+  <div style="flex: 1 1 auto;"> </div>
+  <mat-form-field *ngIf="enableFilter" floatPlaceholder="never">
+    <input matInput placeholder="Filter" [(ngModel)]="filterInput" (ngModelChange)="onFilterChanged($event)" >
+  </mat-form-field>
+</div>
 
 <div class="mat-table fullwidth">
   <div class="mat-header-row" *ngIf="data.length > 0">
@@ -15,13 +19,6 @@
     <div class="mat-cell" *ngFor="let cell of objToArray(data[rowIdx]);" >
       {{cell}}
     </div>
-<!--
-    <div class="mat-cell" class="actions-column">
-      <button mat-icon-button color="primary">
-        <mat-icon>remove_circle</mat-icon>
-      </button>
-    </div>
--->
   </div>
 </div>  
   

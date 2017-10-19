@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-groups-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupsListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,5 +21,9 @@ export class GroupsListComponent implements OnInit {
     {'Id': 5, 'Group name': 'Hydrogen', 'Description': 'Lorem ipsum dollor sit amet', 'Owner': 'marin'},
     {'Id': 6, 'Group name': 'Hydrogen', 'Description': 'Lorem ipsum dollor sit amet', 'Owner': 'marin'},
   ];
+  
+  onGroupClicked(row) {
+    this.router.navigate(['dashboard/group/' + row.Id]);
+  }
 
 }

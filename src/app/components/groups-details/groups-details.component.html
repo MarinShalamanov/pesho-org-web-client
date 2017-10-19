@@ -1,0 +1,30 @@
+<h1 class="mat-headline">{{groupName}}</h1>
+
+<app-long-table 
+    title="Assignments"
+    paginate="true"
+    enableFilter="true"
+    [data]="assignments" 
+    (onRowClicked)="onAssignmentClicked($event)">
+</app-long-table>
+
+<app-long-table 
+    title="Last Submissions"
+    paginate="true"
+    pageSize="10"
+    enableFilter="true"
+    [data]="lastSubmission" 
+    (onRowClicked)="onRowClicked($event)">
+</app-long-table>
+
+<app-long-table 
+    title="Users"
+    paginate="true"
+    pageSize="10"
+    enableFilter="true"
+    [data]="users" 
+    (onRowClicked)="onRowClicked($event)">
+</app-long-table>
+
+
+
