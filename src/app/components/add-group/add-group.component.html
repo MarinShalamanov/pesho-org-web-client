@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-title>Add Group </mat-card-title>
+  <mat-divider></mat-divider>
+  
+  <form class="add-group-form" (submit)="addGroup()">
+    <mat-form-field class="fullwidth">
+      <input matInput 
+             placeholder="Name"  
+             [(ngModel)]="group.name" 
+             name="name" required>
+    </mat-form-field>
+    <mat-form-field class="fullwidth">
+      <input matInput 
+             placeholder="Description" 
+             [(ngModel)]="group.description" 
+             name="description">
+    </mat-form-field>
+    <button mat-raised-button color="primary">
+      Add Group
+    </button>
+  </form>
+</mat-card>

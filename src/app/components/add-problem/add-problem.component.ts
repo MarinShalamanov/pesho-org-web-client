@@ -6,8 +6,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-problem.component.css']
 })
 export class AddProblemComponent implements OnInit {
-  tests = [{input: "1 1\n", output: "2\n"}, 
-           {input: "1 5\n", output: "6\n"}];
+  
+  problem = {
+    name: "Test problem",
+    description: "Bla bla",
+    version: "vers",
+    visibility: "public",
+    tags: "bfs, graph", 
+    points: 100,
+    tests: [{input: "1 1\n", output: "2\n"}, 
+           {input: "1 5\n", output: "6\n"}],
+    languages: {
+      cpp: {
+        allowed: true,
+        timelimit: 100,
+        memorylimit: 64
+      },
+      java: {
+        allowed: false,
+        timelimit: 100,
+        memorylimit: 128
+      }
+    }
+  };
   
   constructor() { }
 
@@ -15,10 +36,15 @@ export class AddProblemComponent implements OnInit {
   }
   
   addTestCase() {
-    this.tests.push({input:"", output: ""});
+    this.problem.tests.push({input:"", output: ""});
   }
   
   removeTestCase(index) {
-    this.tests.splice(index, 1);  
+    this.problem.tests.splice(index, 1);  
+  }
+  
+  addProblem() {
+    console.log("add problem pressed");
+    console.log(this.problem);
   }
 }

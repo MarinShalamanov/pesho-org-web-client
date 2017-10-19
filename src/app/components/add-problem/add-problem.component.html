@@ -2,27 +2,43 @@
   <mat-card-title>Add problem </mat-card-title>
   <mat-divider></mat-divider>
   
-  <form class="add-problem-form">
+  <form class="add-problem-form" (submit)="addProblem()">
     <mat-form-field class="fullwidth">
-      <input matInput placeholder="Problem name">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Version">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Tags">
+      <input matInput 
+             placeholder="Problem name"  
+             [(ngModel)]="problem.name" 
+             name="name" required>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Points" type="number">
+      <input matInput 
+             placeholder="Version" 
+             [(ngModel)]="problem.version" 
+             name="version">
     </mat-form-field>
-
+    <mat-form-field>
+      <input matInput 
+             placeholder="Tags" 
+             [(ngModel)]="problem.tags" 
+             name="tags" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput 
+             placeholder="Points" 
+             type="number" 
+             [(ngModel)]="problem.points" 
+             name="points" required>
+    </mat-form-field>
     <mat-form-field  class="fullwidth" >
-      <textarea matInput placeholder="Description" rows="30"></textarea>
+      <textarea 
+        matInput 
+        placeholder="Description" 
+        rows="30" 
+        [(ngModel)]="problem.description" 
+        name="description" required></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select placeholder="Visibility">
+      <mat-select placeholder="Visibility" [(ngModel)]="problem.visibility" name="visibility">
         <mat-option value="public">Public</mat-option>
         <mat-option value="private">Private</mat-option>
       </mat-select>
@@ -38,12 +54,22 @@
     </button>
     
     <div class="test-cases">
-      <div class="test-case" *ngFor="let test of tests; let i = index" [attr.data-index]="i">
+      <div class="test-case" *ngFor="let test of problem.tests; let i = index" [attr.data-index]="i">
         <mat-form-field>
-          <textarea matInput placeholder="Input {{i+1}}">{{test.input}}</textarea>
+          <textarea 
+            matInput 
+            rows="4"
+            placeholder="Input {{i+1}}" 
+            [(ngModel)]="test.input" 
+            [ngModelOptions]="{standalone: true}"></textarea>
         </mat-form-field>
         <mat-form-field > 
-          <textarea matInput placeholder="Output {{i+1}}">{{test.output}}</textarea>
+          <textarea 
+            matInput 
+            rows="4"
+            placeholder="Output {{i+1}}" 
+            [(ngModel)]="test.output" 
+            [ngModelOptions]="{standalone: true}"></textarea>
         </mat-form-field>
         <button mat-icon-button color="primary" (click)="removeTestCase(i)">
           <mat-icon>remove_circle</mat-icon>
@@ -60,27 +86,55 @@
     
     <div class="languages">
       <div class="language-limits">
-        <mat-checkbox checked>C++</mat-checkbox>
+        <mat-checkbox 
+          [(ngModel)]="problem.languages.cpp.allowed" 
+          name="cpp-allowed">
+            C++
+        </mat-checkbox> 
         <mat-form-field>
-          <input matInput placeholder="Time Limit (ms)" type="number">
+          <input 
+             matInput 
+             placeholder="Time Limit (ms)" 
+             type="number" 
+             [(ngModel)]="problem.languages.cpp.timelimit" 
+             name="cpp-tl">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Memory Limit (MB)" type="number">
+          <input 
+             matInput 
+             placeholder="Memory Limit (MB)" 
+             type="number" 
+             [(ngModel)]="problem.languages.cpp.memorylimit" 
+             name="cpp-ml">
         </mat-form-field>
       </div>
       <div class="language-limits">
-        <mat-checkbox>Java</mat-checkbox>
+        <mat-checkbox 
+          [(ngModel)]="problem.languages.java.allowed" 
+          name="java-allowed">
+          Java
+        </mat-checkbox>
         <mat-form-field>
-          <input matInput placeholder="Time Limit (ms)" type="number">
+          <input 
+             matInput 
+             placeholder="Time Limit (ms)" 
+             type="number" 
+             [(ngModel)]="problem.languages.java.timelimit" 
+             name="java-tl">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Memory Limit (MB)" type="number">
+          <input 
+             matInput 
+             placeholder="Memory Limit (MB)" 
+             type="number" 
+             [(ngModel)]="problem.languages.java.memorylimit" 
+             name="java-ml">
         </mat-form-field>
       </div>
     </div>
     
     <button mat-raised-button color="primary">
       Add Problem
-    </button>s
+    </button>
   </form>
 </mat-card>

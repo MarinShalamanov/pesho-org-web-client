@@ -7,6 +7,7 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule,
         MatGridListModule, MatMenuModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ProblemsInAssignmentComponent } from './components/problems-in-assignment/problems-in-assignment.component';
@@ -20,6 +21,7 @@ import { SubmissionDetailsComponent } from './components/submission-details/subm
 import { AllGroupsComponent } from './components/all-groups/all-groups.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AddProblemComponent } from './components/add-problem/add-problem.component';
+import { AddGroupComponent } from './components/add-group/add-group.component';
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
@@ -36,7 +38,8 @@ const AppRoutes: Routes = [
       {path: 'submit', component: SubmitCodeComponent},
       {path: 'submissions', component: SubmissionsComponent},
       {path: 'submission/:id', component: SubmissionDetailsComponent},
-      {path: 'addproblem', component: AddProblemComponent}
+      {path: 'addproblem', component: AddProblemComponent},
+      {path: 'addgroup', component: AddGroupComponent},
     ]
   }
 ];
@@ -54,7 +57,8 @@ const AppRoutes: Routes = [
     SubmissionDetailsComponent,
     AllGroupsComponent,
     ToolbarComponent,
-    AddProblemComponent
+    AddProblemComponent,
+    AddGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +77,7 @@ const AppRoutes: Routes = [
     MatInputModule,
     MatGridListModule,
     MatMenuModule,
+    FormsModule,
     RouterModule.forRoot(AppRoutes, { enableTracing: true } )
   ],
   providers: [],
