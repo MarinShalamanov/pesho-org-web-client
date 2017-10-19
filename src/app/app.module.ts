@@ -18,6 +18,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { ContestPageComponent } from './components/contest-page/contest-page.component';
 import { SubmissionDetailsComponent } from './components/submission-details/submission-details.component';
 import { AllGroupsComponent } from './components/all-groups/all-groups.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { AddProblemComponent } from './components/add-problem/add-problem.component';
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
@@ -34,6 +36,7 @@ const AppRoutes: Routes = [
       {path: 'submit', component: SubmitCodeComponent},
       {path: 'submissions', component: SubmissionsComponent},
       {path: 'submission/:id', component: SubmissionDetailsComponent},
+      {path: 'addproblem', component: AddProblemComponent}
     ]
   }
 ];
@@ -49,7 +52,9 @@ const AppRoutes: Routes = [
     LoginPageComponent,
     ContestPageComponent,
     SubmissionDetailsComponent,
-    AllGroupsComponent
+    AllGroupsComponent,
+    ToolbarComponent,
+    AddProblemComponent
   ],
   imports: [
     BrowserModule,

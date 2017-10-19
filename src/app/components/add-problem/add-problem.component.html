@@ -1,0 +1,86 @@
+<mat-card>
+  <mat-card-title>Add problem </mat-card-title>
+  <mat-divider></mat-divider>
+  
+  <form class="add-problem-form">
+    <mat-form-field class="fullwidth">
+      <input matInput placeholder="Problem name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Version">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Tags">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Points" type="number">
+    </mat-form-field>
+
+    <mat-form-field  class="fullwidth" >
+      <textarea matInput placeholder="Description" rows="30"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Visibility">
+        <mat-option value="public">Public</mat-option>
+        <mat-option value="private">Private</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+    
+    <h2>Tests</h2> 
+    
+    <button type='button' mat-button color="primary" (click)="addTestCase()">
+      <mat-icon>add_circle</mat-icon>
+      Add Test
+    </button>
+    
+    <div class="test-cases">
+      <div class="test-case" *ngFor="let test of tests; let i = index" [attr.data-index]="i">
+        <mat-form-field>
+          <textarea matInput placeholder="Input {{i+1}}">{{test.input}}</textarea>
+        </mat-form-field>
+        <mat-form-field > 
+          <textarea matInput placeholder="Output {{i+1}}">{{test.output}}</textarea>
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="removeTestCase(i)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </div>
+    </div>
+    <button type='button' mat-button color="primary" (click)="addTestCase()">
+      <mat-icon>add_circle</mat-icon>
+      Add Test
+    </button>
+    
+    <mat-divider></mat-divider>
+    <h2>Limits</h2> 
+    
+    <div class="languages">
+      <div class="language-limits">
+        <mat-checkbox checked>C++</mat-checkbox>
+        <mat-form-field>
+          <input matInput placeholder="Time Limit (ms)" type="number">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Memory Limit (MB)" type="number">
+        </mat-form-field>
+      </div>
+      <div class="language-limits">
+        <mat-checkbox>Java</mat-checkbox>
+        <mat-form-field>
+          <input matInput placeholder="Time Limit (ms)" type="number">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Memory Limit (MB)" type="number">
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <button mat-raised-button color="primary">
+      Add Problem
+    </button>s
+  </form>
+</mat-card>
