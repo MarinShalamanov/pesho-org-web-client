@@ -1,0 +1,16 @@
+
+<h1 class="mat-headline">Queue</h1>
+
+<h2 class="mat-title">In queue</h2>
+<app-long-table 
+    paginate="true"
+    [data]="inQueue" 
+    (onRowClicked)="onRowClicked($event)">
+</app-long-table>
+
+<h2 class="mat-title">Latest done</h2>
+<app-long-table 
+    paginate="true"
+    [data]="done" 
+    (onRowClicked)="onRowClicked($event)">
+</app-long-table>

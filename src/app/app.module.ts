@@ -26,6 +26,8 @@ import { JoinGroupComponent } from './components/join-group/join-group.component
 import { ProblemsListComponent } from './components/problems-list/problems-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LongTableComponent } from './components/long-table/long-table.component';
+import { GroupsListComponent } from './components/groups-list/groups-list.component';
+import { SubmissionQueueComponent } from './components/submission-queue/submission-queue.component';
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
@@ -51,9 +53,9 @@ const AppRoutes: Routes = [
     children: [
       {path: 'problems', component: ProblemsListComponent}, 
       {path: 'problem/:id', component: ProblemComponent},
+      {path: 'groups', component: GroupsListComponent},
       {path: 'assignments', component: ProblemsListComponent},
-      {path: 'queue', component: ProblemsListComponent},
-      {path: 'groups', component: ProblemsListComponent},
+      {path: 'queue', component: SubmissionQueueComponent},
       {path: 'users', component: ProblemsListComponent},
       {path: 'addproblem', component: AddProblemComponent},
       {path: 'addgroup', component: AddGroupComponent},
@@ -79,7 +81,9 @@ const AppRoutes: Routes = [
     JoinGroupComponent,
     ProblemsListComponent,
     DashboardComponent,
-    LongTableComponent
+    LongTableComponent,
+    GroupsListComponent,
+    SubmissionQueueComponent
   ],
   imports: [
     BrowserModule,

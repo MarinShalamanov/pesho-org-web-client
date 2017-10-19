@@ -1,0 +1,12 @@
+
+<h1 class="mat-headline">Groups</h1>
+
+<app-long-table 
+    paginate="true"
+    [data]="data" 
+    (onRowClicked)="onRowClicked($event)">
+</app-long-table>
+
+<a mat-fab class="fab" href="dashboard/addgroup">
+  <mat-icon>add</mat-icon>
+</a>
