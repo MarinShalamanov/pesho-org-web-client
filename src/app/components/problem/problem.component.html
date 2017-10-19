@@ -1,5 +1,11 @@
 <mat-card>
-  <mat-card-title> Hello world {{id}} </mat-card-title>
+  <mat-card-title style="width: 100%; display: flex;"> 
+    Hello world {{id}}  
+    <span style="flex: 1 1 auto;"></span> 
+    <button mat-icon-button> <mat-icon>edit</mat-icon> </button>
+    <button mat-icon-button> <mat-icon>gavel</mat-icon> </button>
+  </mat-card-title>
+  
   <mat-divider></mat-divider>
   <div class="problem-desc">
   Отпечатайте  <br/>
@@ -34,4 +40,4 @@
   </mat-table>
 </mat-card> 
 
-<app-submit-code></app-submit-code>
+<app-submit-code></app-submit-code> 

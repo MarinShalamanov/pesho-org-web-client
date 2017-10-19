@@ -1,8 +1,9 @@
-.mat-column-id {
-  width: 50px;
-  flex: 0 1 auto; 
+
+.actions-column {
+  flex: 0 1 auto;
+  width: 150px;
 }
 
 .highlight-on-hover:hover {
   background-color: aliceblue;
-} 
+}

@@ -29,6 +29,8 @@
       <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row class="highlight-on-hover" *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></mat-row>
-  </mat-table>
+    <mat-row class="highlight-on-hover" 
+             *matRowDef="let row; columns: displayedColumns;" 
+             (click)="rowClicked(row)"></mat-row>
+  </mat-table>  
 </div>

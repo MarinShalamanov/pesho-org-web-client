@@ -4,7 +4,7 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule,
         MatToolbarModule, MatSidenavModule, MatListModule,
         MatIconModule, MatProgressSpinnerModule, MatTableModule,
         MatSelectModule, MatFormFieldModule, MatInputModule,
-        MatGridListModule, MatMenuModule} from '@angular/material';
+        MatGridListModule, MatMenuModule, MatPaginatorModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +22,10 @@ import { AllGroupsComponent } from './components/all-groups/all-groups.component
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { AddProblemComponent } from './components/add-problem/add-problem.component';
 import { AddGroupComponent } from './components/add-group/add-group.component';
+import { JoinGroupComponent } from './components/join-group/join-group.component';
+import { ProblemsListComponent } from './components/problems-list/problems-list.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LongTableComponent } from './components/long-table/long-table.component';
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
@@ -38,10 +42,23 @@ const AppRoutes: Routes = [
       {path: 'submit', component: SubmitCodeComponent},
       {path: 'submissions', component: SubmissionsComponent},
       {path: 'submission/:id', component: SubmissionDetailsComponent},
+      {path: 'joingroup', component: JoinGroupComponent},
+    ]
+  },
+  {
+    path: 'dashboard', 
+    component: DashboardComponent,
+    children: [
+      {path: 'problems', component: ProblemsListComponent}, 
+      {path: 'problem/:id', component: ProblemComponent},
+      {path: 'assignments', component: ProblemsListComponent},
+      {path: 'queue', component: ProblemsListComponent},
+      {path: 'groups', component: ProblemsListComponent},
+      {path: 'users', component: ProblemsListComponent},
       {path: 'addproblem', component: AddProblemComponent},
       {path: 'addgroup', component: AddGroupComponent},
     ]
-  }
+  },
 ];
 
 @NgModule({
@@ -58,7 +75,11 @@ const AppRoutes: Routes = [
     AllGroupsComponent,
     ToolbarComponent,
     AddProblemComponent,
-    AddGroupComponent
+    AddGroupComponent,
+    JoinGroupComponent,
+    ProblemsListComponent,
+    DashboardComponent,
+    LongTableComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +99,7 @@ const AppRoutes: Routes = [
     MatGridListModule,
     MatMenuModule,
     FormsModule,
+    MatPaginatorModule,
     RouterModule.forRoot(AppRoutes, { enableTracing: true } )
   ],
   providers: [],

@@ -1,0 +1,40 @@
+<mat-form-field floatPlaceholder="never">
+  <input matInput placeholder="Filter" [(ngModel)]="filterInput" (ngModelChange)="onFilterChanged($event)" >
+</mat-form-field>
+
+<div class="mat-table fullwidth">
+  <div class="mat-header-row" *ngIf="data.length > 0">
+    <div class="mat-header-cell" *ngFor="let field of getFieldNames(data[0]);">
+      {{field}}
+    </div>
+<!--    <div class="mat-header-cell actions-column"> Action </div>-->
+  </div>
+  <div class="mat-row highlight-on-hover"  
+       *ngFor="let rowIdx of elementsIndexesToDisplay;" 
+       (click)="rowClicked(data[rowIdx])">
+    <div class="mat-cell" *ngFor="let cell of objToArray(data[rowIdx]);" >
+      {{cell}}
+    </div>
+<!--
+    <div class="mat-cell" class="actions-column">
+      <button mat-icon-button color="primary">
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </div>
+-->
+  </div>
+</div>  
+  
+<mat-paginator *ngIf="paginate && filteredIndexes.length > pageSize"
+               #paginator 
+               [length]="filteredIndexes.length"
+               [pageSize]="pageSize"
+               (page)="onPageChanged($event)">
+</mat-paginator>
+
+
+<!-- Dummy table to enforce the css styles for mat-table to get included. -->
+<mat-table >
+  <mat-header-row *matHeaderRowDef="[]"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: [];"></mat-row>
+</mat-table>

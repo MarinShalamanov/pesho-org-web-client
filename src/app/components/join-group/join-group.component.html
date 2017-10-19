@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-title>Join Group </mat-card-title>
+  <mat-divider></mat-divider>
+  
+  <form class="join-form" (submit)="joinGroup()">
+    <mat-form-field class="fullwidth">
+      <input matInput 
+             placeholder="Name"  
+             [(ngModel)]="name" 
+             name="name" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary">
+      Join
+    </button>
+  </form>
+</mat-card>

@@ -20,7 +20,6 @@ export class SubmissionsComponent implements OnInit {
   }
   
   rowClicked(row) {
-    console.log(row);
     this.router.navigate(['contest/submission/' + row.position]);
   }
 }
