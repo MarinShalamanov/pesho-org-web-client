@@ -3,7 +3,15 @@
     Hello world {{id}}  
     <span style="flex: 1 1 auto;"></span> 
     <button mat-icon-button> <mat-icon>edit</mat-icon> </button>
-    <button mat-icon-button> <mat-icon>gavel</mat-icon> </button>
+    
+    <button mat-icon-button (click)="onRejudge()"> 
+      <mat-icon>gavel</mat-icon> 
+    </button>
+    
+    <button mat-icon-button (click)="onAddToAssignment()"> 
+      <mat-icon>playlist_add</mat-icon> 
+    </button>
+    
   </mat-card-title>
   
   <mat-divider></mat-divider>
@@ -18,26 +26,9 @@
 <mat-card class = "limits-card">
   <mat-card-title> Ограничения </mat-card-title>
   <mat-divider></mat-divider>
-  <mat-table #table [dataSource]="dataSource">
-    <!-- Color Column -->
-    <ng-container matColumnDef="lang">
-      <mat-header-cell *matHeaderCellDef> Language </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.lang}} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="time">
-      <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
-    </ng-container>
-    
-    <ng-container matColumnDef="space">
-      <mat-header-cell *matHeaderCellDef> Space </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.space}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+  <app-long-table 
+    [data]="limits">
+  </app-long-table>
 </mat-card> 
 
 <app-submit-code></app-submit-code> 

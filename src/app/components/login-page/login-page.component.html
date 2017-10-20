@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 
 <div style="display: flex;
   flex-flow: column; height: 100%;  background-color: aliceblue;">
@@ -8,15 +7,85 @@
   </mat-toolbar>
   
   <mat-card style="margin: auto; width: 30%; display: flex; flex-direction: column;">
-    <mat-card-title>Login</mat-card-title>
-    <form style="display: flex; flex-direction: column; margin: auto;">
-      <mat-form-field>
-        <input matInput placeholder="User">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Password">
-      </mat-form-field>
-      <a routerLink='/contest' class="submit-btn" mat-raised-button color="primary">Submit</a>
-    </form>
+    <mat-tab-group>
+      <mat-tab label="Login">
+        <form id="login" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+          <mat-form-field>
+            <input matInput 
+                   name="user"
+                   placeholder="User"
+                   [(ngModel)]="login.user"
+                   required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput 
+                   placeholder="Password" 
+                   type="password"  
+                   name="password"
+                   [(ngModel)]="login.password"
+                   required>
+          </mat-form-field>
+          <button type="submit" class="submit-btn" mat-raised-button color="primary">Login</button>
+        </form>
+      </mat-tab>
+      <mat-tab label="Register">
+        <form id="register" #regForm="ngForm" (ngSubmit)="onRegister(regForm)">
+          <mat-form-field>
+            <input matInput 
+                   name="firstname"
+                   placeholder="First Name"
+                   required
+                   [(ngModel)]="register.firstname">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput 
+                   name="secondname"
+                   placeholder="Second Name"
+                   [(ngModel)]="register.secondname">
+          </mat-form-field>
+          
+          <mat-form-field>
+            <input matInput 
+                   name="lastname"
+                   placeholder="Family Name"
+                   [(ngModel)]="register.lastname"
+                   required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput 
+                   name="username"
+                   placeholder="Username" 
+                   [(ngModel)]="register.username"
+                   required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput 
+                   name="email"
+                   placeholder="E-mail" 
+                   [(ngModel)]="register.email"
+                   required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput 
+                   name="password"
+                   placeholder="Password" 
+                   [(ngModel)]="register.password"
+                   type="password"
+                   required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput 
+                   name="repassword"
+                   placeholder="Password again" 
+                   [(ngModel)]="register.repassword"
+                   type="password"
+                   required>
+          </mat-form-field>
+          <button type="submit" mat-raised-button color="primary">Register</button>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+    
+    
   </mat-card> 
 </div>

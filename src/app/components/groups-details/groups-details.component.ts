@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   
 @Component({
-  selector: 'app-groups-details',
+  selector: 'app- groups-details',
   templateUrl: './groups-details.component.html',
   styleUrls: ['./groups-details.component.css']
 })

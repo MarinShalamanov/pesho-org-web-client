@@ -1,16 +1,15 @@
-
 <h1 class="mat-headline">Queue</h1>
 
-<h2 class="mat-title">In queue</h2>
 <app-long-table 
+    title="In queue"
     paginate="true"
     enableFilter="true"
     [data]="inQueue" 
     (onRowClicked)="onRowClicked($event)">
 </app-long-table>
 
-<h2 class="mat-title">Latest done</h2>
 <app-long-table 
+    title="Latest done"
     paginate="true"
     enableFilter="true"
     [data]="done" 

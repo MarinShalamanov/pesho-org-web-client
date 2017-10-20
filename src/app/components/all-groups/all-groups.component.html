@@ -5,18 +5,22 @@
   
   <div style="padding: 20px;">
     <h1 class="mat-headline"> Groups </h1>
-    <div style="display: grid;
-      grid-template-columns: repeat(5, 1fr);
-    grid-gap: 15px;">
-      <mat-card style=" display: flex; padding-top: 10px; padding-bottom: 10px; align-items: center; ">
+    <div class ="card-container">
+      <mat-card 
+                style="display: flex; padding-top: 10px; padding-bottom: 10px; align-items: center; "
+                (click) = "onGroupClick(1)">
         <mat-card-title style="margin: auto;"> ПЧМГ 2018</mat-card-title>
       </mat-card> 
 
-      <mat-card style=" display: flex;  align-items: center; ">
+      <mat-card 
+                style=" display: flex;  align-items: center; "
+                (click) = "onGroupClick(2)">
         <mat-card-title style="margin: auto;"> СМГ 5А</mat-card-title>
       </mat-card>
 
-      <mat-card style=" display: flex;  align-items: center; ">
+      <mat-card 
+                style=" display: flex;  align-items: center; "
+                (click) = "onGroupClick(3)">
         <mat-card-title style="margin: auto;"> Public group</mat-card-title>
       </mat-card>
 

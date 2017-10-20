@@ -1,8 +1,7 @@
-
-<h1 class="mat-headline">Groups</h1>
-
 <app-long-table 
+    title="Groups"
     paginate="true"
+    enableFilter="true"
     [data]="data" 
     (onRowClicked)="onGroupClicked($event)">
 </app-long-table>

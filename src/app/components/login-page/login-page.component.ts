@@ -6,10 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-
+  register = {
+    firstname: "", 
+    secondname: "", 
+    lastname: "", 
+    username: "", 
+    email: "", 
+    password: "", 
+    repassord: ""
+  };
+  login = {
+    user: "",
+    password: "",
+  }
   constructor() { }
 
   ngOnInit() {
   }
-
+  
+  onLogin(form) {
+    if (!form.invalid) {
+      console.log(form);
+    }
+  } 
+  
+  onRegister(form) {
+    if (!form.invalid) {
+      console.log(this.register);
+    }
+  }
 }

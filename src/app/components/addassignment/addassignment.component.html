@@ -1,0 +1,87 @@
+<mat-card>
+  <mat-card-title>Add assignment </mat-card-title>
+  <mat-divider></mat-divider>
+  
+  <form class="add-ass-form" 
+        (submit)="add()" >
+    <mat-form-field class="fullwidth">
+      <input matInput 
+             placeholder="Assignment name"  
+             [(ngModel)]="assignment.name" 
+             name="name" 
+             required>
+    </mat-form-field>
+    
+    <div class="fullwidth">
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerStart" placeholder="Start date" required>
+        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStart></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput 
+               placeholder="Start time"  
+               [(ngModel)]="assignment.starttime" 
+               name="starttime" required>
+      </mat-form-field>
+    </div>
+    
+    <div class="fullwidth">
+      <mat-form-field *ngIf="!assignment.isInfinite">
+        <input matInput [matDatepicker]="pickerEnd" placeholder="End date">
+        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEnd></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="!assignment.isInfinite" >
+        <input matInput 
+               placeholder="End time"  
+               [(ngModel)]="assignment.endtime" 
+               name="endtime" >
+      </mat-form-field>
+    </div>
+    
+    <mat-checkbox
+      name="isInfinite"[(ngModel)]="assignment.isInfinite">Infinite</mat-checkbox>
+  
+    
+    <mat-form-field class="fullwidth">
+      <input matInput 
+             placeholder="Comma separated list of problem IDs (or leave empty and problem later)"  
+             [(ngModel)]="assignment.problems" 
+             name="name">
+    </mat-form-field>
+    
+    <mat-form-field class="fullwidth">
+      <mat-select 
+                  name="group"
+                  [(ngModel)]="assignment.group"
+                  placeholder="Select group" 
+                  required>
+        <mat-option *ngFor="let group of groups" [value]="group.id">
+          {{ group.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    
+    <div class="fullwidth checkbox-wrapper">
+      <mat-checkbox
+        class="fullwidth"
+        name="hideTestInfo"[(ngModel)]="assignment.hideTestInfo">
+        Hide Test Info
+      </mat-checkbox>
+    </div>
+    
+    <div class="fullwidth checkbox-wrapper">
+      <mat-checkbox
+        name="showTopStandings"[(ngModel)]="assignment.showTopStandings">
+        Show Only Top 5 in Standings
+      </mat-checkbox>
+    </div>
+    
+    <button mat-raised-button color="primary" class="add-button">
+      Add Assignment
+    </button>
+  </form>
+</mat-card>

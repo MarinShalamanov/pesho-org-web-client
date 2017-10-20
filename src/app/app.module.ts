@@ -4,7 +4,9 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule,
         MatToolbarModule, MatSidenavModule, MatListModule,
         MatIconModule, MatProgressSpinnerModule, MatTableModule,
         MatSelectModule, MatFormFieldModule, MatInputModule,
-        MatGridListModule, MatMenuModule, MatPaginatorModule} from '@angular/material';
+        MatGridListModule, MatMenuModule, MatPaginatorModule,
+        MatSnackBarModule, MatTabsModule, MatDatepickerModule,
+        MatNativeDateModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,10 +31,13 @@ import { LongTableComponent } from './components/long-table/long-table.component
 import { GroupsListComponent } from './components/groups-list/groups-list.component';
 import { SubmissionQueueComponent } from './components/submission-queue/submission-queue.component';
 import { GroupsDetailsComponent } from './components/groups-details/groups-details.component';
+import { AddassignmentComponent } from './components/addassignment/addassignment.component';
+
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent},
+  {path: 'register', component: LoginPageComponent},
   {path: 'home', component: AllGroupsComponent},
   {
     path: 'contest', 
@@ -40,6 +45,7 @@ const AppRoutes: Routes = [
     children: [
       {path: 'standings', component: StandingsComponent},
       {path: 'problem/:id', component: ProblemComponent},
+      {path: 'group/:id', component: GroupsDetailsComponent},
       {path: 'problem', redirectTo: 'problems', pathMatch: 'full'}, 
       {path: 'problems', component: ProblemsInAssignmentComponent},
       {path: 'submit', component: SubmitCodeComponent},
@@ -61,6 +67,7 @@ const AppRoutes: Routes = [
       {path: 'users', component: ProblemsListComponent},
       {path: 'addproblem', component: AddProblemComponent},
       {path: 'addgroup', component: AddGroupComponent},
+      {path: 'addassignment', component: AddassignmentComponent}
     ]
   },
 ];
@@ -86,7 +93,8 @@ const AppRoutes: Routes = [
     LongTableComponent,
     GroupsListComponent,
     SubmissionQueueComponent,
-    GroupsDetailsComponent
+    GroupsDetailsComponent,
+    AddassignmentComponent
   ],
   imports: [
     BrowserModule,
@@ -107,6 +115,10 @@ const AppRoutes: Routes = [
     MatMenuModule,
     FormsModule,
     MatPaginatorModule,
+    MatSnackBarModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forRoot(AppRoutes, { enableTracing: true } )
   ],
   providers: [],

@@ -1,0 +1,11 @@
+form {
+  display: flex; 
+  flex-direction: column; 
+  margin: auto; 
+  align-items: center;
+}
+
+mat-tab-group {
+  margin: auto;
+  width: fit-content;
+}

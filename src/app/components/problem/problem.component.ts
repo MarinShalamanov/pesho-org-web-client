@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-problem',
@@ -11,38 +12,43 @@ import 'rxjs/add/observable/of';
 })
 export class ProblemComponent implements OnInit {
   displayedColumns = ['lang', 'time', 'space'];
-  dataSource = new ExampleDataSource();
   id = 0;
   
-  constructor(private route: ActivatedRoute) { }
+  limits = [
+    {Language: "C++", Time: '400ms', Space: "64 MB"},
+    {Language: "Java", Time: '400ms', Space: "64 MB"}
+  ]
+  
+  constructor(private route: ActivatedRoute, 
+               public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
   }
-}
-
-export interface Element {
-  lang: string;
-  time: string;
-  space: string;
-}
-
-const data: Element[] = [
-  {lang: "C++", time: '400ms', space: "64 MB"},
-  {lang: "Java", time: '400ms', space: "64 MB"}
-]
-
-/**
- * Data source to provide what data should be rendered in the table. The observable provided
- * in connect should emit exactly the data that should be rendered by the table. If the data is
- * altered, the observable should emit that new set of data on the stream. In our case here,
- * we return a stream that contains only one set of data that doesn't change.
- */
-export class ExampleDataSource extends DataSource<any> {
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Element[]> {
-    return Observable.of(data);
+  
+  onRejudge() {
+    // TODO ask for confirmation
+    let snackBarRef = this.snackBar.open('Rejudge started', 'Undo', {
+      duration: 3000
+    });
+    
+    let undone = false;
+    snackBarRef.onAction().subscribe(() => {
+      undone = true;
+    });
+    
+    snackBarRef.afterDismissed().subscribe(() => {
+      if (!undone) {
+        // TODO Trigger rejudge here
+      }
+    });
   }
-
-  disconnect() {}
+  
+  onAddToAssignment() {
+    // TODO show dialog with recent assignments
+    this.snackBar.open('Adding to assignment...', '', {
+      duration: 2000
+    });
+  }
 }
+
