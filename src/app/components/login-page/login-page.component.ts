@@ -13,7 +13,7 @@ export class LoginPageComponent implements OnInit {
     username: "", 
     email: "", 
     password: "", 
-    repassord: ""
+    repassword: ""
   };
   login = {
     user: "",

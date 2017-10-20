@@ -48,5 +48,9 @@ export class GroupsDetailsComponent implements OnInit {
     {'Id': 5, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
     {'Id': 6, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
   ];
+  
+  onRowClicked(row) {
+    console.log("click");
+  }
 
 }
