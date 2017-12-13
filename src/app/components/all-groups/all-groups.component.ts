@@ -18,7 +18,6 @@ export class AllGroupsComponent implements OnInit {
     this.groupsService.getGroups().subscribe(
       data => {
         this.groups = data as any[];
-        console.log(this.groups);
       });
   }
   

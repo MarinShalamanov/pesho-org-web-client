@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title style="width: 100%; display: flex;"> 
-    Hello world {{id}}  
+    {{problem?.name}} 
     <span style="flex: 1 1 auto;"></span> 
     <button mat-icon-button> <mat-icon>edit</mat-icon> </button>
     
@@ -16,10 +16,7 @@
   
   <mat-divider></mat-divider>
   <div class="problem-desc">
-  Отпечатайте  <br/>
-<pre> Hello, World!  </pre>
-  <br/>
-  * На края на програмата НЕ трябва да има нов ред
+  {{problem?.description}} 
   </div>
   
 </mat-card>

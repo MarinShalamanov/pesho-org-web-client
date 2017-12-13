@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ProblemsService } from '../../services/problems.service';
 
 @Component({
   selector: 'app-problems-list',
@@ -7,22 +8,33 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./problems-list.component.css']
 })
 export class ProblemsListComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private problemsService: ProblemsService) { }
 
+  public problems: any[] = [];
+  
   ngOnInit() {
+    this.problemsService
+      .getProblems()
+      .subscribe(
+        data => {
+          this.problems = (data as any[])
+            .map(this.problemToTableRow); 
+        });
   }
     
   onRowClicked(row) {  
-    this.router.navigate(['dashboard/problem/' + row.Id]);
+    this.router.navigate(['dashboard/problem/' + row.ID]);
   }
   
-  data = [
-    {'Id': 1, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 2, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 3, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 4, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 5, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 6, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-  ];
+  private problemToTableRow(problem) {
+    return {
+      ID: problem.id,
+      Name: problem.name,
+      Tags: problem.tags.map(x => x.tag).join(', '),
+      Author: problem.author,
+      Username: problem.username
+    }
+  }
 }
 

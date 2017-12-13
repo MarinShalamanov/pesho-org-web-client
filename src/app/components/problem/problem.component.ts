@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {DataSource} from '@angular/cdk/collections';
-import {Observable} from 'rxjs/Observable';
+import { DataSource } from '@angular/cdk/collections';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
+import { ProblemsService } from '../../services/problems.service';
 
 @Component({
   selector: 'app-problem',
@@ -14,16 +15,25 @@ export class ProblemComponent implements OnInit {
   displayedColumns = ['lang', 'time', 'space'];
   id = 0;
   
-  limits = [
-    {Language: "C++", Time: '400ms', Space: "64 MB"},
-    {Language: "Java", Time: '400ms', Space: "64 MB"}
-  ]
+  public problem: any;
+  public limits: any[] = [];
   
   constructor(private route: ActivatedRoute, 
-               public snackBar: MatSnackBar) { }
+              public snackBar: MatSnackBar,
+              private problemsService: ProblemsService) { }
 
+  
+  
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
+    
+    this.problemsService
+      .getProblem(this.id)
+      .subscribe(data => {
+        this.problem = data;
+        this.limits = [this.problem.languages['c++'], this.problem.languages['java']]
+        console.log(this.problem);
+      });
   }
   
   onRejudge() {

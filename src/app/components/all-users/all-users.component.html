@@ -1,12 +1,11 @@
 <app-long-table 
     paginate="true"
-    title="Problems"
+    title="Users"
     enableFilter="true"
-    [data]="problems" 
+    [data]="users" 
     (onRowClicked)="onRowClicked($event)">
 </app-long-table>
 
 <a mat-fab class="fab" href="dashboard/addproblem">
   <mat-icon>add</mat-icon>
 </a>
-

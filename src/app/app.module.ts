@@ -44,6 +44,7 @@ import { UsersService } from './services/users.service';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
@@ -75,7 +76,7 @@ const AppRoutes: Routes = [
       {path: 'group/:id', component: GroupsDetailsComponent},
       {path: 'assignments', component: ProblemsListComponent},
       {path: 'queue', component: SubmissionQueueComponent},
-      {path: 'users', component: ProblemsListComponent},
+      {path: 'users', component: AllUsersComponent},
       {path: 'addproblem', component: AddProblemComponent},
       {path: 'addgroup', component: AddGroupComponent},
       {path: 'addassignment', component: AddassignmentComponent}
@@ -106,6 +107,7 @@ const AppRoutes: Routes = [
     SubmissionQueueComponent,
     GroupsDetailsComponent,
     AddassignmentComponent,
+    AllUsersComponent,
     
   ],
   imports: [
