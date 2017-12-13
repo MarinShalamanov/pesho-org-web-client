@@ -9,16 +9,17 @@
 // </app-long-table>
 import { Component, OnInit, Input, 
         Output, EventEmitter, ViewChild, 
-        ElementRef } from '@angular/core';
+        ElementRef, SimpleChanges, OnChanges } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-long-table',
   templateUrl: './long-table.component.html',
   styleUrls: ['./long-table.component.css']
 })
-export class LongTableComponent implements OnInit {
+export class LongTableComponent implements OnInit, OnChanges  {
   @Input() title: string = "";
-  @Input() data;
+  @Input() data: any[];
   @Input() enableFilter: boolean = false;
   @Input() paginate: boolean = false;
   @Input() pageSize: number = 50;
@@ -36,6 +37,10 @@ export class LongTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.filterData();
+  }
+  
+  ngOnChanges(changes: SimpleChanges) {
     this.filterData();
   }
   
@@ -67,7 +72,6 @@ export class LongTableComponent implements OnInit {
   
   private filterData() {
     this.filteredIndexes = [];
-    console.log(this.filterWords);
     if (this.filterWords.length == 0) {
       for (let i = 0; i < this.data.length; i++) {
         this.filteredIndexes.push(i);

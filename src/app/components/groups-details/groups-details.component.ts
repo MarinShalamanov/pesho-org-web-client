@@ -1,16 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-  
+import { GroupsServiceService } from '../../services/groups-service.service';
+
 @Component({
   selector: 'app- groups-details',
   templateUrl: './groups-details.component.html',
   styleUrls: ['./groups-details.component.css']
 })
 export class GroupsDetailsComponent implements OnInit {
-  groupName = "ПЧМГ"
-  constructor(private router: Router) { }
+  groupName = "ПЧМГ";
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private groupsService: GroupsServiceService) { }
 
+  group: any;
+  
   ngOnInit() {
+    let groupId = this.route.snapshot.params.id;
+    console.log(groupId);
+    this.groupsService
+      .getGroup(groupId)
+      .subscribe(data => {
+        this.group = data;
+      });
+    console.log(this.group);
   }
   
   onAssignmentClicked(row) {

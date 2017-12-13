@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { GroupsServiceService } from '../../services/groups-service.service';
 
 @Component({
   selector: 'app-all-groups',
@@ -8,9 +9,17 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class AllGroupsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private groupsService: GroupsServiceService) { }
 
+  public groups = [];
+  
   ngOnInit() {
+    this.groupsService.getGroups().subscribe(
+      data => {
+        this.groups = data as any[];
+        console.log(this.groups);
+      });
   }
   
   onGroupClick(id) {

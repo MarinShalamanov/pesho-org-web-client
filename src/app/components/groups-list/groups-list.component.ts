@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { GroupsServiceService } from '../../services/groups-service.service';
 
 @Component({
   selector: 'app-groups-list',
@@ -8,19 +9,18 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class GroupsListComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, 
+              private groupsService: GroupsServiceService) { }
 
-  ngOnInit() {
-  }
+  public groups = [];
   
-  data = [
-    {'Id': 1, 'Group name': 'Hydrogen', 'Description': 'Lorem ipsum dollor sit amet', 'Owner': 'marin'},
-    {'Id': 2, 'Group name': 'Hydrogen', 'Description': 'Lorem ipsum dollor sit amet', 'Owner': 'marin'},
-    {'Id': 3, 'Group name': 'Hydrogen', 'Description': 'Lorem ipsum dollor sit amet', 'Owner': 'marin'},
-    {'Id': 4, 'Group name': 'Hydrogen', 'Description': 'Lorem ipsum dollor sit amet', 'Owner': 'marin'},
-    {'Id': 5, 'Group name': 'Hydrogen', 'Description': 'Lorem ipsum dollor sit amet', 'Owner': 'marin'},
-    {'Id': 6, 'Group name': 'Hydrogen', 'Description': 'Lorem ipsum dollor sit amet', 'Owner': 'marin'},
-  ];
+  ngOnInit() {
+    this.groupsService.getGroups().subscribe(
+      data => {
+        this.groups = data as any[];
+        console.log(this.groups);
+      });
+  }
   
   onGroupClicked(row) {
     this.router.navigate(['dashboard/group/' + row.Id]);

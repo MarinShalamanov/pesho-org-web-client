@@ -7,8 +7,9 @@ import { MatButtonModule, MatCheckboxModule, MatCardModule,
         MatGridListModule, MatMenuModule, MatPaginatorModule,
         MatSnackBarModule, MatTabsModule, MatDatepickerModule,
         MatNativeDateModule} from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule, Routes} from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -33,6 +34,16 @@ import { SubmissionQueueComponent } from './components/submission-queue/submissi
 import { GroupsDetailsComponent } from './components/groups-details/groups-details.component';
 import { AddassignmentComponent } from './components/addassignment/addassignment.component';
 
+import { ApiConfigService } from './services/api-config.service';
+import { AssignmentsService } from './services/assignments.service';
+import { GroupsServiceService } from './services/groups-service.service';
+import { ProblemsService } from './services/problems.service';
+import { SubmissionsService } from './services/submissions.service';
+import { UsersService } from './services/users.service';
+
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth-interceptor';
 
 const AppRoutes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
@@ -94,10 +105,12 @@ const AppRoutes: Routes = [
     GroupsListComponent,
     SubmissionQueueComponent,
     GroupsDetailsComponent,
-    AddassignmentComponent
+    AddassignmentComponent,
+    
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
@@ -121,7 +134,19 @@ const AppRoutes: Routes = [
     MatNativeDateModule,
     RouterModule.forRoot(AppRoutes, { enableTracing: true } )
   ],
-  providers: [],
+  providers: [
+    ApiConfigService,
+    GroupsServiceService,
+    AssignmentsService,
+    ProblemsService, 
+    SubmissionsService, 
+    UsersService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
