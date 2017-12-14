@@ -8,7 +8,11 @@
   <mat-divider></mat-divider>
   <mat-card-content>
     <mat-nav-list>
-      <a mat-list-item href="contest/problem/1"> <mat-icon style="color: green; width: 40px;">done</mat-icon>  Problem 1 </a>
+      <a *ngFor="let problem of problems;"
+         mat-list-item 
+         href="contest/problem/1"> 
+        <mat-icon style="color: green; width: 40px;">done</mat-icon>  {{problem.name}} 
+      </a>
       <a mat-list-item href="contest/problem/2"> <mat-icon style="color: red; width: 40px;">error</mat-icon> Problem 2 </a>
       <a mat-list-item href="contest/problem/3"> <mat-icon style="color: red; width: 40px;">error</mat-icon> Problem 3 </a>
     </mat-nav-list>

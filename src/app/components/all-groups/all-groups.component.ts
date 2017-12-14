@@ -22,6 +22,6 @@ export class AllGroupsComponent implements OnInit {
   }
   
   onGroupClick(id) {
-    this.router.navigate(['contest/group/' + id]);
+    this.router.navigate([`groups/${id}/`]);
   }
 }

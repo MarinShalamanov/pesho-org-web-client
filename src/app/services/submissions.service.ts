@@ -18,5 +18,9 @@ export class SubmissionsService {
   public getSubmission(submissionId) {
     return this.http.get(this.apiPrefix + `submissions/${submissionId}`);
   }
+  
+  public getMySubmissionsInAssignment(assignmentId) {
+    return this.http.get(this.apiPrefix + `submissions/assignments/${assignmentId}`);
+  }
 
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { SubmissionsService } from '../../services/submissions.service';
 
 @Component({
   selector: 'app-submissions',
@@ -14,9 +15,19 @@ export class SubmissionsComponent implements OnInit {
   dataSource = new ExampleDataSource();
   title = 'Submissions';
   
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private submissionsService: SubmissionsService) { }
 
+  public submissions: any[] = [];
+  
   ngOnInit() {
+    let assignmentId = 1;
+    this.submissionsService
+      .getMySubmissionsInAssignment(assignmentId)
+      .subscribe(
+        data => {
+          this.submissions = (data as any[]); 
+        });
   }
   
   rowClicked(row) {

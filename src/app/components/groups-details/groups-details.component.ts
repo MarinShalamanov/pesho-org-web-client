@@ -10,6 +10,9 @@ import { UsersService } from '../../services/users.service';
 })
 export class GroupsDetailsComponent implements OnInit {
   groupName = "ПЧМГ";
+  private contestId: string;
+  private groupId: string;
+  
   constructor(private router: Router,
               private route: ActivatedRoute,
               private groupsService: GroupsServiceService,
@@ -35,22 +38,22 @@ export class GroupsDetailsComponent implements OnInit {
   public users: any[] = [];
   
   ngOnInit() {
-    let groupId = this.route.snapshot.params.id;
+    this.groupId = this.route.snapshot.params.groupid;
     this.groupsService
-      .getGroup(groupId)
+      .getGroup(this.groupId)
       .subscribe(data => {
         this.group = data;
       });
     
     this.groupsService
-      .getUsersInGroup(groupId)
+      .getUsersInGroup(this.groupId)
       .subscribe(data => {
         this.users = data as any[];
       });
   }
   
   onAssignmentClicked(row) {
-    this.router.navigate(['contest/problems']);
+    this.router.navigate([`groups/${this.groupId}/contest/${row.Id}/problems`]);
   }
   
   onRowClicked(row) {
