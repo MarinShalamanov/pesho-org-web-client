@@ -43,7 +43,16 @@ export class GroupsDetailsComponent implements OnInit {
     this.assignmentsService
       .getAssignmentsInGroup(this.groupId)
       .subscribe(data => {
-        this.assignments = data as any[];
+        this.assignments = [];  
+        for (let ass of (data as any[])) {
+          this.assignments.push({
+            'Id': ass.id,
+            'Name': ass.name,
+            'Start time': ass.starttime, 
+            'End time': ass.endtime, 
+            'User': ass.username, 
+          }); 
+        }
       }); 
     
     this.submissionsService
@@ -54,7 +63,7 @@ export class GroupsDetailsComponent implements OnInit {
   }
   
   onAssignmentClicked(row) {
-    this.router.navigate([`groups/${this.groupId}/contest/${row.id}/problems`]);
+    this.router.navigate([`groups/${this.groupId}/contest/${row.Id}/problems`]);
   }
   
   onRowClicked(row) {

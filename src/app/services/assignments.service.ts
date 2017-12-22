@@ -30,4 +30,8 @@ export class AssignmentsService {
   public getCurrUserPoints(assignmentId) {
     return this.http.get(this.apiPrefix + `assignments/${assignmentId}/points`);
   }
+  
+  public getStandings(assignmentId) {
+    return this.http.get(this.apiPrefix + `assignments/${assignmentId}/standings`);
+  }
 }
