@@ -3,26 +3,47 @@
 
   <mat-divider></mat-divider>
   
-  <form class="submit-code-form">
+  <form class="submit-code-form" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <mat-select placeholder="Problem" name="food">
-        <mat-option *ngFor="let problem of problems" [value]="problem.number">
+      <mat-select placeholder="Problem" name="food" [(value)]="metadata.problemId">
+        <mat-option *ngFor="let problem of problems" [value]="problem.problemid">
           {{problem.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     
     <mat-form-field>
-      <mat-select placeholder="Language" name="lang">
+      <mat-select placeholder="Language" name="lang"
+                  [(value)]="metadata.language">
         <mat-option *ngFor="let lang of langs" [value]="lang.value">
           {{lang.viewValue}}
         </mat-option>
       </mat-select>  
     </mat-form-field>
     
+    <div>
+      
+      <button type="button" 
+              mat-raised-button 
+              color="primary" 
+              name="submit-file-btn"
+              (click)="fileInput.click()">Choose file</button>
+      <input hidden 
+             type="file"
+             name="file"
+             #fileInput 
+             (change)="fileChange($event)"/>
+      <span class="mat-body">{{file?.name}}</span>
+    </div>
+    
     <mat-form-field class="code-input" >
-      <textarea matInput placeholder="Paste your code here" rows="25" cols="80"></textarea>
+      <textarea matInput
+                name="code"
+                [(ngModel)]="metadata.code" 
+                placeholder="Paste your code here" 
+                rows="25" cols="80"></textarea>
     </mat-form-field>
+    
     <button class="submit-btn" mat-raised-button color="primary">Submit</button>
   </form>
   

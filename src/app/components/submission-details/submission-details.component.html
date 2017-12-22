@@ -3,29 +3,35 @@
   <div class="submission-info-section">
     <div class="info-item">
       <span class="info-label">Id</span>
-      <span>{{id}}</span>
+      <span>{{submission?.id}}</span>
     </div>
     <div class="info-item">
       <span class="info-label">Time</span>
-      <span>{{time}}</span>
+      <span>{{submission?.time}}</span>
     </div>
     <div class="info-item">
       <span class="info-label">User</span>
-      <span>{{user}}</span>
+      <span>{{submission?.userid}}</span>
     </div>
     <div class="info-item">
       <span class="info-label">Problem</span>
-      <span>{{problem}}</span>
+      <span>{{submission?.problemid}}</span>
     </div>
     <div class="info-item">
       <span class="info-label">Langauge</span>
-      <span>{{language}}</span>
+      <span>{{submission?.language}}</span>
     </div>  
     <div class="info-item">
       <span class="info-label">Verdict</span>
-      <span>{{verdict}}</span>
+      <span>{{submission?.verdict}}</span>
     </div>
   </div>
+</mat-card>
+
+<mat-card class="card-code" *ngIf="submission?.reason != ''">
+<pre>
+{{submission?.reason}}
+</pre>
 </mat-card>
 
 <mat-card class="card-tests">
@@ -68,73 +74,6 @@
 
 <mat-card class="card-code">
 <pre>
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.StringTokenizer;
-
-public class Kolejka  
-
-	public static void solve(InputReader in, PrintWriter out)  
-		int a1 = in.nextInt(), b1 = in.nextInt(), c1 = in.nextInt(), a2 = in.nextInt(), b2 = in.nextInt(),
-				c2 = in.nextInt();
-		int x1 = in.nextInt(), y1 = in.nextInt(), z1 = in.nextInt(), x2 = in.nextInt(), y2 = in.nextInt(),
-				z2 = in.nextInt();
-		int s1 = a1 * 60 * 60 + b1 * 60 + c1;
-		int e1 = a2 * 60 * 60 + b2 * 60 + c2;
-		int s2 = x1 * 60 * 60 + y1 * 60 + z1;
-		int e2 = x2 * 60 * 60 + y2 * 60 + z2;
-			out.println();
-			return;
-		
-		int diff = e - s;
-		int h = diff / 3600;
-		int m = (diff % 3600) / 60;
-		int sec = (diff % 3600) % 60;
-		out.println(h + " " + m + " " + sec);
-	
-
-	public static void main(String[] args)  
-		InputStream inputStream = System.in;
-		OutputStream outputStream = System.out;
-		InputReader in = new InputReader(inputStream);
-		PrintWriter out = new PrintWriter(outputStream);
-		solve(in, out);
-		out.close();
-	
-
-	static class InputReader  
-		public BufferedReader reader;
-		public StringTokenizer tokenizer;
-
-		public InputReader(InputStream stream)  
-			reader = new BufferedReader(new InputStreamReader(stream), 32768);
-			tokenizer = null;
-		
-
-		public String next()  
-			while (tokenizer == null || !tokenizer.hasMoreTokens())  
-				try  
-					tokenizer = new StringTokenizer(reader.readLine());
-				 catch (IOException e)  
-					throw new RuntimeException(e);
-				
-			
-			return tokenizer.nextToken();
-		
-
-		public int nextInt()  
-			return Integer.parseInt(next());
-		
-
-		public long nextLong()  
-			return Long.parseLong(next());
-		
-
-		public double nextDouble()  
-			return Double.parseDouble(next()); 
+{{submission?.source}}
 </pre>
 </mat-card>

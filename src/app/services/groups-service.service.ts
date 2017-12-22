@@ -13,7 +13,7 @@ export class GroupsServiceService {
   private PAGE_SIZE = 100;
   
   public getGroups() {
-    return this.http.get(this.apiPrefix + `groups?size=${this.PAGE_SIZE}`);
+    return this.http.get(this.apiPrefix + `groups?size=${this.  PAGE_SIZE}`);
   }
   
   public getGroup(groupId) {

@@ -44,8 +44,8 @@ export class SubmissionsComponent implements OnInit {
         });
   }
   
-  rowClicked(row) {
-    this.router.navigate(['contest/submission/' + row.position]);
+  onRowClicked(row) {
+    this.router.navigate([`groups/${this.groupId}/contest/${this.contestId}/submission/${row.id}`]);
   }
 }
 
