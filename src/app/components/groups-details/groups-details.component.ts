@@ -76,7 +76,7 @@ export class GroupsDetailsComponent implements OnInit {
     this.router.navigate([`groups/${this.groupId}/contest/${row.Id}/problems`]);
   }
   
-  onRowClicked(submission) {
+  onSubmissionClicked(submission) {
     this.router.navigate([`groups/${this.groupId}/contest/${this.contestId}/submission/${submission.Id}`]);
   }
 }

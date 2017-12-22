@@ -83,6 +83,7 @@ export class LongTableComponent implements OnInit, OnChanges  {
         }
       }
     }
+    
     this.computeElementsToDisplay();
   }
   
@@ -117,7 +118,7 @@ export class LongTableComponent implements OnInit, OnChanges  {
            i < pageSize   
             && i + offset < this.filteredIndexes.length; 
            i++) {
-        this.elementsIndexesToDisplay.push(i+offset);
+        this.elementsIndexesToDisplay.push(this.filteredIndexes[i+offset]);
       }
     } else {
       this.elementsIndexesToDisplay = this.filteredIndexes;

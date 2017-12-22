@@ -14,7 +14,7 @@
     pageSize="10"
     enableFilter="true"
     [data]="lastSubmission" 
-    (onRowClicked)="onRowClicked($event)">
+    (onRowClicked)="onSubmissionClicked($event)">
 </app-long-table>
 
 <app-long-table 
@@ -22,8 +22,7 @@
     paginate="true"
     pageSize="10"
     enableFilter="true"
-    [data]="users" 
-    (onRowClicked)="onRowClicked($event)">
+    [data]="users">
 </app-long-table>
 
 
