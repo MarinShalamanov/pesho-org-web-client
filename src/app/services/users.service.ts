@@ -22,4 +22,8 @@ export class UsersService {
   public getSubmissionsForUsers(userId) {
     return this.http.get(this.apiPrefix + `users/${userId}/submissions`);
   }
+  
+  public getUsersInGroup(groupId) {
+    return this.http.get(this.apiPrefix + `users/groups/${groupId}`);
+  }
 }

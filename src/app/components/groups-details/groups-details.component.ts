@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GroupsServiceService } from '../../services/groups-service.service';
 import { UsersService } from '../../services/users.service';
+import { AssignmentsService } from '../../services/assignments.service';
 
 @Component({
   selector: 'app- groups-details',
@@ -9,16 +10,16 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./groups-details.component.css']
 })
 export class GroupsDetailsComponent implements OnInit {
-  groupName = "ПЧМГ";
   private contestId: string;
   private groupId: string;
+  public group: any;
   
   constructor(private router: Router,
               private route: ActivatedRoute,
               private groupsService: GroupsServiceService,
-              private usersService: UsersService) { }
+              private usersService: UsersService,
+              private assignmentsService: AssignmentsService) { }
 
-  group: any;
   
   public lastSubmission = [
     {'Id': 6, 'User': 'rara', 'Name': 'Raia Davcheva', Time: '	2016-09-27 04:49:48 +0000 UTC', Problem: "Hello, World!", Lanuguage: "c++", Verdict: "Compilation Failed"},
@@ -26,15 +27,7 @@ export class GroupsDetailsComponent implements OnInit {
     {'Id': 8, 'User': 'rara', 'Name': 'Raia Davcheva', Time: '	2016-09-27 04:49:48 +0000 UTC', Problem: "Hello, World!", Lanuguage: "c++", Verdict: "Compilation Failed"},
   ];
   
-  public assignments = [
-    {'Id': 1, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 2, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 3, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 4, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 5, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-    {'Id': 6, 'Probem name': 'Hydrogen', 'Version': '1.0079', Tags: 'H'},
-  ];
-  
+  public assignments: any[] = [];
   public users: any[] = [];
   
   ngOnInit() {
@@ -45,11 +38,17 @@ export class GroupsDetailsComponent implements OnInit {
         this.group = data;
       });
     
-    this.groupsService
+    this.usersService
       .getUsersInGroup(this.groupId)
       .subscribe(data => {
         this.users = data as any[];
       });
+    
+    this.assignmentsService
+      .getAssignmentsInGroup(this.groupId)
+      .subscribe(data => {
+        this.assignments = data as any[];
+      }); 
   }
   
   onAssignmentClicked(row) {

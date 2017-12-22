@@ -18,12 +18,4 @@ export class GroupsServiceService {
   public getGroup(groupId) {
     return this.http.get(this.apiPrefix + `groups/${groupId}`);
   }
-  
-  public getAssignmentsInGroup(groupId) {
-    return this.http.get(this.apiPrefix + `groups/${groupId}/assignments`);
-  }
-  
-  public getUsersInGroup(groupId) {
-    return this.http.get(this.apiPrefix + `groups/${groupId}/users`);
-  }
 }

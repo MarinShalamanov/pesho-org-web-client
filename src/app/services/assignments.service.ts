@@ -22,4 +22,9 @@ export class AssignmentsService {
   public getProblemsInAssignment(assignmentId) {
     return this.http.get(this.apiPrefix + `assignments/${assignmentId}/problems`);
   }
+  
+  public getAssignmentsInGroup(groupId) {
+    return this.http.get(this.apiPrefix + `assignments/groups/${groupId}`);
+  }
+  
 }

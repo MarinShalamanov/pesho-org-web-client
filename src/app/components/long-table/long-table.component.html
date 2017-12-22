@@ -6,6 +6,10 @@
   </mat-form-field>
 </div>
 
+<div *ngIf="elementsIndexesToDisplay.length == 0">
+  <p style="margin-left: 10px;" class="mat-body-1">No data</p>
+</div>
+
 <div class="mat-table fullwidth">
   <div class="mat-header-row" *ngIf="data.length > 0">
     <div class="mat-header-cell" *ngFor="let field of getFieldNames(data[0]);">
