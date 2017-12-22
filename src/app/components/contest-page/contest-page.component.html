@@ -1,8 +1,8 @@
 <div style="display: flex; flex-flow: column; height: 100%;">
   <app-toolbar></app-toolbar>
 
-  <mat-sidenav-container style="flex: 1">
-    <mat-sidenav #sidenav opened="true" mode="side" >
+  <mat-sidenav-container style="flex: 1;">
+    <mat-sidenav #sidenav opened="true" mode="side" style="width: 12em;">
       <mat-nav-list>
         <a mat-list-item href="home"> Home </a>
         <a mat-list-item href="groups/{{groupId}}"> {{group?.groupname}} </a>
