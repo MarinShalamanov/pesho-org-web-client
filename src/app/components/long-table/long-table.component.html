@@ -1,7 +1,7 @@
 <div class="fullwidth table-title-div" >
   <h2 class="mat-title table-title">{{title}}</h2>
   <div style="flex: 1 1 auto;"> </div>
-  <mat-form-field *ngIf="enableFilter" floatPlaceholder="never">
+  <mat-form-field *ngIf=" enableFilter" floatPlaceholder="never">
     <input matInput placeholder="Filter" [(ngModel)]="filterInput" (ngModelChange)="onFilterChanged($event)" >
   </mat-form-field>
 </div>
