@@ -11,11 +11,11 @@
     </div>
     <div class="info-item">
       <span class="info-label">User</span>
-      <span>{{submission?.userid}}</span>
+      <span>{{submission?.username}}</span>
     </div>
     <div class="info-item">
       <span class="info-label">Problem</span>
-      <span>{{submission?.problemid}}</span>
+      <span>{{submission?.name}}</span>
     </div>
     <div class="info-item">
       <span class="info-label">Langauge</span>
@@ -30,46 +30,21 @@
 
 <mat-card class="card-code" *ngIf="submission?.reason != ''">
 <pre>
-{{submission?.reason}}
+{{submission?.reason}}  
 </pre>
 </mat-card>
 
-<mat-card class="card-tests">
-    <mat-table #table [dataSource]="testsDataSource">
-    <ng-container matColumnDef="step">
-      <mat-header-cell *matHeaderCellDef> Step </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.step}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-      <mat-cell *matCellDef="let element"> 
-        <div *ngIf="element.status == 'OK'; else elseBlock">
-          <mat-icon style="color: green; margin-right: 5px;">done</mat-icon>{{element.status}}
-        </div>
-        <ng-template #elseBlock>
-          <mat-icon style="color: red; margin-right: 5px;">error</mat-icon>{{element.status}}
-        </ng-template>
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="reason">
-      <mat-header-cell *matHeaderCellDef> Reason </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.reason}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="time">
-      <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="input">
-      <mat-header-cell *matHeaderCellDef> Input </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.input}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="output">
-      <mat-header-cell *matHeaderCellDef> Output </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.output}} </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
-  </mat-table>
+
+<mat-card class="card-tests" *ngIf="submission?.details">
+      
+  <app-long-table 
+    title="Test Details"
+    paginate="true"
+    pageSize="10"
+    enableFilter="true"
+    [data]="submission?.details">
+  </app-long-table>
+
 </mat-card>
 
 <mat-card class="card-code">
