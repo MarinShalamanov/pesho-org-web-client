@@ -24,6 +24,6 @@ export class UsersService {
   }
   
   public getUsersInGroup(groupId) {
-    return this.http.get(this.apiPrefix + `users/groups/${groupId}`);
+    return this.http.get(this.apiPrefix + `users/groups/${groupId}?size=1000`);
   }
 }

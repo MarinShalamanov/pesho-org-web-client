@@ -58,7 +58,17 @@ export class GroupsDetailsComponent implements OnInit {
     this.submissionsService
       .getSubmissionsInGroup(this.groupId)
       .subscribe(data => {
-        this.lastSubmission = data as any[];
+        this.lastSubmission = []; //data as any[];
+        for (let sub of (data as any[])) {
+          this.lastSubmission.push({
+            Id: sub.id,  
+            User: sub.username,
+            Assignment: sub.assignmentname, 
+            Problem: sub.problemname,
+            Time: sub.time,
+            Points: sub.points,
+          });
+        } 
       }); 
   }
   
@@ -66,7 +76,7 @@ export class GroupsDetailsComponent implements OnInit {
     this.router.navigate([`groups/${this.groupId}/contest/${row.Id}/problems`]);
   }
   
-  onRowClicked(row) {
-    console.log("click");
+  onRowClicked(submission) {
+    this.router.navigate([`groups/${this.groupId}/contest/${this.contestId}/submission/${submission.Id}`]);
   }
 }
