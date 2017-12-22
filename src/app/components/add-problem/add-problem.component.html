@@ -6,7 +6,7 @@
     <mat-form-field class="fullwidth">
       <input matInput 
              placeholder="Problem name"  
-             [(ngModel)]="problem.name" 
+             [(ngModel)]="problem.problemname" 
              name="name" required>
     </mat-form-field>
     <mat-form-field>
@@ -33,7 +33,7 @@
         matInput 
         placeholder="Description" 
         rows="30" 
-        [(ngModel)]="problem.description" 
+        [(ngModel)]="problem.text" 
         name="description" required></textarea>
     </mat-form-field>
 
@@ -47,6 +47,20 @@
     <mat-divider></mat-divider>
     
     <h2>Tests</h2> 
+    
+    <div>
+      <button type="button" 
+              mat-raised-button 
+              color="primary" 
+              name="submit-file-btn"
+              (click)="fileInput.click()">Choose file</button>
+      <input hidden 
+             type="file"
+             name="file"
+             #fileInput 
+             (change)="fileChange($event)"/>
+      <span class="mat-body">{{file?.name}}</span>
+    </div>
     
     <button type='button' mat-button color="primary" (click)="addTestCase()">
       <mat-icon>add_circle</mat-icon>
@@ -87,7 +101,7 @@
     <div class="languages">
       <div class="language-limits">
         <mat-checkbox 
-          [(ngModel)]="problem.languages.cpp.allowed" 
+          [(ngModel)]="problem.languages['c++'].allowed" 
           name="cpp-allowed">
             C++
         </mat-checkbox> 
@@ -96,7 +110,7 @@
              matInput 
              placeholder="Time Limit (ms)" 
              type="number" 
-             [(ngModel)]="problem.languages.cpp.timelimit" 
+             [(ngModel)]="problem.languages['c++'].TimeLimit" 
              name="cpp-tl">
         </mat-form-field>
         <mat-form-field>
@@ -104,7 +118,7 @@
              matInput 
              placeholder="Memory Limit (MB)" 
              type="number" 
-             [(ngModel)]="problem.languages.cpp.memorylimit" 
+             [(ngModel)]="problem.languages['c++'].MemoryLimit" 
              name="cpp-ml">
         </mat-form-field>
       </div>
@@ -119,7 +133,7 @@
              matInput 
              placeholder="Time Limit (ms)" 
              type="number" 
-             [(ngModel)]="problem.languages.java.timelimit" 
+             [(ngModel)]="problem.languages.java.TimeLimit" 
              name="java-tl">
         </mat-form-field>
         <mat-form-field>
@@ -127,7 +141,7 @@
              matInput 
              placeholder="Memory Limit (MB)" 
              type="number" 
-             [(ngModel)]="problem.languages.java.memorylimit" 
+             [(ngModel)]="problem.languages.java.MemoryLimit" 
              name="java-ml">
         </mat-form-field>
       </div>

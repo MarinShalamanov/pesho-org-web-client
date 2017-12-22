@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ProblemsService } from '../../services/problems.service';
+import * as JSZip from 'jszip';
 
 @Component({
   selector: 'app-add-problem',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProblemComponent implements OnInit {
   
-  problem = {
-    name: "Test problem",
-    description: "Bla bla",
+  public file: File;
+  
+  public problem = {
+    problemname: "Test problem",
+    text: "Bla bla",
     version: "vers",
     visibility: "public",
     tags: "bfs, graph", 
@@ -17,34 +22,87 @@ export class AddProblemComponent implements OnInit {
     tests: [{input: "1 1\n", output: "2\n"}, 
            {input: "1 5\n", output: "6\n"}],
     languages: {
-      cpp: {
+      'c++': {
         allowed: true,
-        timelimit: 100,
-        memorylimit: 64
+        TimeLimit: 100,
+        MemoryLimit: 64
       },
       java: {
         allowed: false,
-        timelimit: 100,
-        memorylimit: 128
+        TimeLimit: 100,
+        MemoryLimit: 128
       }
     }
   };
   
-  constructor() { }
+  constructor(private router: Router,
+              private problemsService: ProblemsService) { }
 
   ngOnInit() {
   }
   
-  addTestCase() {
+  public addTestCase() {
     this.problem.tests.push({input:"", output: ""});
   }
   
-  removeTestCase(index) {
+  public removeTestCase(index) {
     this.problem.tests.splice(index, 1);  
   }
   
-  addProblem() {
-    console.log("add problem pressed");
-    console.log(this.problem);
+  private languageToDTO(langName) {
+    return {
+      Language: langName,
+      TimeLimit: this.problem.languages[langName].TimeLimit,
+      MemoryLimit: this.problem.languages[langName].MemoryLimit,
+    }
+  }
+  
+  private checkAndAddLangToDTO(languagesDTO, langName) {
+    if (this.problem.languages[langName].allowed) {
+      languagesDTO[langName] = this.languageToDTO(langName);
+    }
+  }
+  
+  public addProblem() {
+    let languagesDTO = {};
+    this.checkAndAddLangToDTO(languagesDTO, 'c++');
+    this.checkAndAddLangToDTO(languagesDTO, 'java');
+    
+    let problemDTO = {
+      problemname: this.problem.problemname,
+      text: this.problem.text,
+      version: this.problem.version,
+      visibility: this.problem.visibility,
+      tags: this.problem.tags,
+      points: this.problem.points,
+      languages: languagesDTO
+    };
+    
+    let zipFile: JSZip = new JSZip();
+    for (let i = 0; i < this.problem.tests.length; i++) {
+      zipFile.file(`input${i+1}`, this.problem.tests[i].input);
+      zipFile.file(`output${i+1}`, this.problem.tests[i].output);
+    }
+    
+    zipFile.generateAsync({type: "blob"})
+      .then(testsBlob => {
+        console.log(this.problem);
+        console.log(problemDTO);
+        this.problemsService
+          .createProblem(problemDTO, testsBlob);
+      
+        this.router.navigate([`dashboard/problems`]);
+      
+      });
+  }
+  
+  public fileChange(event) {
+    let fileList: FileList = event.target.files;
+    
+    if (fileList.length > 0) {
+      this.file = fileList[0];
+    } else {
+      this.file = null;
+    }
   }
 }

@@ -19,4 +19,9 @@ export class GroupsServiceService {
   public getGroup(groupId) {
     return this.http.get(this.apiPrefix + `groups/${groupId}`);
   }
+  
+  public createGroup(group) {
+    return this.http.post(this.apiPrefix + `groups`, group);
+  }
+  
 }

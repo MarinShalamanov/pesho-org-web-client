@@ -9,10 +9,12 @@ export class UsersService {
   constructor(private http: HttpClient,
               private apiConfig: ApiConfigService) { }
   
+  private PAGE_SIZE = 2000;
+  
   private apiPrefix = this.apiConfig.getApiPrefix();
   
   public getUsers() {
-    return this.http.get(this.apiPrefix + 'users');
+    return this.http.get(this.apiPrefix + `users?size=${this.PAGE_SIZE}`);
   }
   
   public getUser(userId) {
@@ -24,6 +26,6 @@ export class UsersService {
   }
   
   public getUsersInGroup(groupId) {
-    return this.http.get(this.apiPrefix + `users/groups/${groupId}?size=1000`);
+    return this.http.get(this.apiPrefix + `users/groups/${groupId}?size=${this.PAGE_SIZE}`);
   }
 }
