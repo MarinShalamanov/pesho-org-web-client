@@ -18,5 +18,9 @@ export class ProblemsService {
   public getProblem(problemId) {
     return this.http.get(this.apiPrefix + `problems/${problemId}`);
   }
+  
+  public getProblemFromAssignment(contestId, problemId) {
+    return this.http.get(this.apiPrefix + `assignments/${contestId}/problems/${problemId}`);
+  }
 
 }

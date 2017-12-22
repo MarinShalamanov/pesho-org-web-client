@@ -27,4 +27,7 @@ export class AssignmentsService {
     return this.http.get(this.apiPrefix + `assignments/groups/${groupId}`);
   }
   
+  public getCurrUserPoints(assignmentId) {
+    return this.http.get(this.apiPrefix + `assignments/${assignmentId}/points`);
+  }
 }

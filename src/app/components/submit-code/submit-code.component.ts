@@ -8,12 +8,7 @@ import { AssignmentsService } from '../../services/assignments.service';
   styleUrls: ['./submit-code.component.css']
 })
 export class SubmitCodeComponent implements OnInit {
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-  langs = [
+  public langs = [
     {value: 'cpp', viewValue: 'C++'},
     {value: 'node', viewValue: 'NodeJS'},
     {value: 'java', viewValue: 'Java'}
@@ -34,12 +29,6 @@ export class SubmitCodeComponent implements OnInit {
       .getProblemsInAssignment(this.contestId)
       .subscribe(data => {
         this.problems = data as any[];
-//        for (let problem of (data as any[])) {
-//          this.problems.push({
-//            value: problem.number,
-//            viewValue: problem.name
-//          });  
-//        }
     });
   }
 

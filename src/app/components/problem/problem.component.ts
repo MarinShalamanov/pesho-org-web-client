@@ -17,6 +17,7 @@ export class ProblemComponent implements OnInit {
   
   public problem: any;
   public limits: any[] = [];
+  private contestId: string;
   
   constructor(private route: ActivatedRoute, 
               public snackBar: MatSnackBar,
@@ -26,9 +27,10 @@ export class ProblemComponent implements OnInit {
   
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
+    this.contestId = this.route.snapshot.params.contestid;
     
     this.problemsService
-      .getProblem(this.id)
+      .getProblemFromAssignment(this.contestId, this.id)
       .subscribe(data => {
         this.problem = data;
         if (this.problem) {

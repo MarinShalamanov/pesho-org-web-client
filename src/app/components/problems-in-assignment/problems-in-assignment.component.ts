@@ -17,19 +17,23 @@ export class ProblemsInAssignmentComponent implements OnInit {
   private groupId: string;
   public problems: any[];
   public assignment: any;
-  
+  public points: any;
   
   ngOnInit() {
     this.contestId = this.route.snapshot.params.contestid;
     this.groupId = this.route.parent.snapshot.params.groupid;
     
-    console.log('routeeee');
-    console.log(this.route);
-    
     this.assignmentsService
       .getAssignment(this.contestId)
       .subscribe(data => {
         this.assignment = data as any;
+    });
+    
+    
+    this.assignmentsService
+      .getCurrUserPoints(this.contestId)
+      .subscribe(data => {
+        this.points = data as any;
     });
     
     this.assignmentsService
