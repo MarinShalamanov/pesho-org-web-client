@@ -6,8 +6,8 @@
   <form class="submit-code-form">
     <mat-form-field>
       <mat-select placeholder="Problem" name="food">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
+        <mat-option *ngFor="let problem of problems" [value]="problem.number">
+          {{problem.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
