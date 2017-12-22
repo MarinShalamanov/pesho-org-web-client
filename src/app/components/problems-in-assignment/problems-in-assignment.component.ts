@@ -9,14 +9,28 @@ import { AssignmentsService } from '../../services/assignments.service';
 })
 export class ProblemsInAssignmentComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,
+  constructor(private router: Router,
+              private route: ActivatedRoute,
               private assignmentsService: AssignmentsService) { }
 
   private contestId: string;
+  private groupId: string;
   public problems: any[];
+  public assignment: any;
+  
   
   ngOnInit() {
     this.contestId = this.route.snapshot.params.contestid;
+    this.groupId = this.route.parent.snapshot.params.groupid;
+    
+    console.log('routeeee');
+    console.log(this.route);
+    
+    this.assignmentsService
+      .getAssignment(this.contestId)
+      .subscribe(data => {
+        this.assignment = data as any;
+    });
     
     this.assignmentsService
       .getProblemsInAssignment(this.contestId)
@@ -24,5 +38,9 @@ export class ProblemsInAssignmentComponent implements OnInit {
         this.problems = data as any[];
     });
   }
+  
+  public onProblemClicked(problem) {
+    this.router.navigate([`groups/${this.groupId}/contest/${this.contestId}/problem/${problem.number}`]);
+  } 
 
 }

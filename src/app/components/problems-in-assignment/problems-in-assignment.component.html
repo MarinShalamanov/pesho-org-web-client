@@ -1,6 +1,6 @@
 <mat-card >
   <mat-card-title style="width: 100%; display: flex;"> 
-    NOI 2nd round 
+    {{assignment?.name}}
     <span style="flex: 1 1 auto;"></span> 
     110 / 300 
   </mat-card-title>
@@ -10,11 +10,9 @@
     <mat-nav-list>
       <a *ngFor="let problem of problems;"
          mat-list-item 
-         href="contest/problem/1"> 
+         (click)="onProblemClicked(problem)"> 
         <mat-icon style="color: green; width: 40px;">done</mat-icon>  {{problem.name}} 
       </a>
-      <a mat-list-item href="contest/problem/2"> <mat-icon style="color: red; width: 40px;">error</mat-icon> Problem 2 </a>
-      <a mat-list-item href="contest/problem/3"> <mat-icon style="color: red; width: 40px;">error</mat-icon> Problem 3 </a>
     </mat-nav-list>
   </mat-card-content>
 </mat-card> 

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GroupsServiceService } from '../../services/groups-service.service';
 import { UsersService } from '../../services/users.service';
 import { AssignmentsService } from '../../services/assignments.service';
+import { SubmissionsService } from '../../services/submissions.service';
 
 @Component({
   selector: 'app- groups-details',
@@ -18,15 +19,10 @@ export class GroupsDetailsComponent implements OnInit {
               private route: ActivatedRoute,
               private groupsService: GroupsServiceService,
               private usersService: UsersService,
-              private assignmentsService: AssignmentsService) { }
+              private assignmentsService: AssignmentsService,
+              private submissionsService: SubmissionsService) { }
 
-  
-  public lastSubmission = [
-    {'Id': 6, 'User': 'rara', 'Name': 'Raia Davcheva', Time: '	2016-09-27 04:49:48 +0000 UTC', Problem: "Hello, World!", Lanuguage: "c++", Verdict: "Compilation Failed"},
-    {'Id': 7, 'User': 'rara', 'Name': 'Raia Davcheva', Time: '	2016-09-27 04:49:48 +0000 UTC', Problem: "Hello, World!", Lanuguage: "c++", Verdict: "Compilation Failed"},
-    {'Id': 8, 'User': 'rara', 'Name': 'Raia Davcheva', Time: '	2016-09-27 04:49:48 +0000 UTC', Problem: "Hello, World!", Lanuguage: "c++", Verdict: "Compilation Failed"},
-  ];
-  
+  public lastSubmission: any[] = [];
   public assignments: any[] = [];
   public users: any[] = [];
   
@@ -49,10 +45,16 @@ export class GroupsDetailsComponent implements OnInit {
       .subscribe(data => {
         this.assignments = data as any[];
       }); 
+    
+    this.submissionsService
+      .getSubmissionsInGroup(this.groupId)
+      .subscribe(data => {
+        this.lastSubmission = data as any[];
+      }); 
   }
   
   onAssignmentClicked(row) {
-    this.router.navigate([`groups/${this.groupId}/contest/${row.Id}/problems`]);
+    this.router.navigate([`groups/${this.groupId}/contest/${row.id}/problems`]);
   }
   
   onRowClicked(row) {

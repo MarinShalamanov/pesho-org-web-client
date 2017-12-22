@@ -15,8 +15,8 @@
   </mat-card-title>
   
   <mat-divider></mat-divider>
-  <div class="problem-desc">
-  {{problem?.description}} 
+  
+  <div class="problem-desc" [innerHTML]="problem?.description">
   </div>
   
 </mat-card>

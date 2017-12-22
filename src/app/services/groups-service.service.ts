@@ -10,9 +10,10 @@ export class GroupsServiceService {
               private apiConfig: ApiConfigService) { }
   
   private apiPrefix = this.apiConfig.getApiPrefix();
+  private PAGE_SIZE = 100;
   
   public getGroups() {
-    return this.http.get(this.apiPrefix + 'groups');
+    return this.http.get(this.apiPrefix + `groups?size=${this.PAGE_SIZE}`);
   }
   
   public getGroup(groupId) {

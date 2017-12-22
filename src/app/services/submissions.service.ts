@@ -22,5 +22,9 @@ export class SubmissionsService {
   public getMySubmissionsInAssignment(assignmentId) {
     return this.http.get(this.apiPrefix + `submissions/assignments/${assignmentId}`);
   }
+  
+  public getSubmissionsInGroup(groupId) {
+    return this.http.get(this.apiPrefix + `submissions/groups/${groupId}`);
+  } 
 
 }

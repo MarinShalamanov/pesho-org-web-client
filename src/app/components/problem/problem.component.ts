@@ -31,7 +31,9 @@ export class ProblemComponent implements OnInit {
       .getProblem(this.id)
       .subscribe(data => {
         this.problem = data;
-        this.limits = [this.problem.languages['c++'], this.problem.languages['java']]
+        if (this.problem) {
+          this.limits = [this.problem.languages['c++'], this.problem.languages['java']]
+        }
         console.log(this.problem);
       });
   }
