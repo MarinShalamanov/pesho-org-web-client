@@ -45,10 +45,12 @@ import { UsersService } from './services/users.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
 import { AllUsersComponent } from './components/all-users/all-users.component';
+import { ProblemInAssignmentComponent } from './components/problem-in-assignment/problem-in-assignment.component';
+import { ProblemPageComponent } from './components/problem-page/problem-page.component';
 
 const AppRoutes: Routes = [
-  {path: '',   redirectTo: '/login', pathMatch: 'full'},
-  {path: 'login', component: LoginPageComponent},
+  {path: '',   redirectTo: '/plogin', pathMatch: 'full'},
+  {path: 'plogin', component: LoginPageComponent},
   {path: 'register', component: LoginPageComponent},
   {path: 'home', component: AllGroupsComponent},
   {
@@ -108,6 +110,8 @@ const AppRoutes: Routes = [
     GroupsDetailsComponent,
     AddassignmentComponent,
     AllUsersComponent,
+    ProblemInAssignmentComponent,
+    ProblemPageComponent,
     
   ],
   imports: [

@@ -83,7 +83,7 @@ export class LongTableComponent implements OnInit, OnChanges  {
         }
       }
     }
-    
+      
     this.computeElementsToDisplay();
   }
   

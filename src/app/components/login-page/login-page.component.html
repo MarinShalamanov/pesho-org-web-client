@@ -25,6 +25,7 @@
                    [(ngModel)]="login.password"
                    required>
           </mat-form-field>
+          <span class="mat-body" *ngIf="showWrongCredentials"> Wrong username or password. </span>
           <button type="submit" class="submit-btn" mat-raised-button color="primary">Login</button>
         </form>
       </mat-tab>

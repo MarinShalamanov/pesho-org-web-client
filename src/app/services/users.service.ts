@@ -28,4 +28,10 @@ export class UsersService {
   public getUsersInGroup(groupId) {
     return this.http.get(this.apiPrefix + `users/groups/${groupId}?size=${this.PAGE_SIZE}`);
   }
+  
+  public login(user, pass) {
+   return this.http.post(`login`, 
+                         {username: user, password: pass},
+                         {responseType: 'text'});
+  }
 }

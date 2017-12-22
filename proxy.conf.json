@@ -6,5 +6,9 @@
   "/register": {
     "target": "http://localhost:8888",
     "secure": false
+  },
+  "/login": {
+    "target": "http://localhost:8888",
+    "secure": false
   }
 }
